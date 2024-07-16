@@ -1,2 +1,2 @@
 # KimoTest
-Assignment test of interview process of Kimo.ai 
+Chhotya Jahirati Application
