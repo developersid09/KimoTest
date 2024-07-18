@@ -14,7 +14,7 @@
 
 - Clone this project
 ```
-git clone < project-url.git >
+git clone https://github.com/developersid09/KimoTest.git
 ```
 
 - [Install NodeJS](https://nodejs.org/en/) on your computer.
