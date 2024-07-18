@@ -1,15 +1,17 @@
 import React from 'react';
+import { Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import NavigationUrl from '../Utils/NavigationUrl';
 import { Colors } from '../Utils';
 import { Header } from '../Components/Header';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import NavigationUrl from '../Utils/NavigationUrl';
 
 import Dashboard from '../Screen/Dashboard';
-import { Image, StyleSheet } from 'react-native';
+import Surfing from '../Screen/Surfing';
+import EmptyScreen from '../Screen/EmptyScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,13 +69,13 @@ function TabNavigator() {
         component={Dashboard} />
       <Tab.Screen
         name="Surfing"
-        component={Dashboard} />
+        component={Surfing} />
       <Tab.Screen
         name="Hula"
-        component={Dashboard} />
+        component={EmptyScreen} />
       <Tab.Screen
         name="Vulcano"
-        component={Dashboard} />
+        component={EmptyScreen} />
     </Tab.Navigator>
   );
 }
@@ -102,6 +104,14 @@ const AppContainer = ({ }) => {
         <Stack.Screen
           name={NavigationUrl.dashboardId}
           component={Dashboard}
+        />
+        <Stack.Screen
+          name={NavigationUrl.surfingId}
+          component={Surfing}
+        />
+        <Stack.Screen
+          name={NavigationUrl.emptyScreenId}
+          component={EmptyScreen}
         />
 
       </Stack.Navigator>

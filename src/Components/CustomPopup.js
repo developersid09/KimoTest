@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import Modal from 'react-native-modal';
-import CustomTextView from './CustomeTextView';
+import CustomTextView from './CustomTextView';
 import { Colors } from '../Utils';
 
 const CustomPopup = props => {

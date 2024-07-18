@@ -3,6 +3,10 @@
     "APP_NAME": "KimoTest"
   },
   "DASHBOARD": {
-    "HIGHLIGHTS": "Highlights"
+    "HIGHLIGHTS": "Highlights",
+    "CATAGORIES": "Catagories",
+    "GUIDE": "Travel Guide",
+    "CONTACT": "Contact",
+    "BOOK": "Book a trip"
   }
 }
