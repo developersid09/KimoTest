@@ -40,7 +40,7 @@ yarn global add react-native-cli
 - Then, run the project in executing on your project folder:
 
 ```
-react-native run-android
+yarn android:run
 ```
 
 
