@@ -10,7 +10,7 @@ export default {
   colorTextBold: '#243441',
   colorText: "#243441",
   colorUnderline: 'gray',
-  colorStatusBar: '#0e3258',
+  colorStatusBar: '#008080',
   colorBorder: "#d9d9d9",
 
   colorRed: "#ff0000",

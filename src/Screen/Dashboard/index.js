@@ -156,6 +156,12 @@ const Dashboard = props => {
 
         </View>
       </View>
+
+
+      <TouchableOpacity style={styles.bookingButton}>
+        <Text style={styles.buttonText}>{StringsOfLang.DASHBOARD.BOOK}</Text>
+      </TouchableOpacity>
+
     </ScrollView>
   );
 };
@@ -262,5 +268,25 @@ const styles = StyleSheet.create({
     width: RFValue(74),
     borderRadius: RFValue(37),
     backgroundColor: Colors.colorGray
-  }
+  },
+  bookingButton: {
+    padding: RFValue(8),
+    margin: RFValue(16),
+    // width: '100%',
+    backgroundColor: Colors.colorPrimary,
+    marginTop: RFValue(20),
+    marginBottom: RFValue(30),
+    borderRadius: RFValue(8),
+    shadowColor: Colors.colorPrimary,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 9,
+  },
+  buttonText: {
+    fontSize: RFValue(14),
+    color: Colors.colorWhite,
+    textAlign: 'center',
+    fontFamily: getFontFamily("bold")
+  },
 });
