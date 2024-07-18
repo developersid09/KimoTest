@@ -24,32 +24,31 @@ import { StringsOfLang } from '../../Localization';
 import { getFontFamily } from '../../Utils/FontFamily';
 import { SliderBox } from "react-native-image-slider-box";
 import CustomTextView from '../../Components/CustomTextView';
-import ItemHighlight from './component/ItemHighlight';
-import ItemCatagories from './component/ItemCatagories';
+import ItemTopSpots from './component/ItemTopSpots';
 
-const Dashboard = props => {
+const Surfing = props => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const { session, setSession } = useSession();
-  const [highLights, setHighLights] = useState(session.highLights);
-  const [catagories, setCatagories] = useState(session.catagories);
+  const [screenData, setScreenData] = useState(session.highLights[0]);
   const [guide, setGuide] = useState(session.guide);
+
+  const sessionData = session;
+
+  useEffect(() => {
+    isFocused && getInfo()
+  }, [isFocused]);
+
+  const getInfo = async () => {
+    setScreenData(session.highLights[0]);
+    console.log("screendata ", screenData);
+  }
+
 
   const renderItem = ({ item, index }) => {
     return (
       <>
-        <ItemHighlight
-          item={item}
-          index={index}
-          onPress={() => { }} />
-      </>
-    )
-  }
-
-  const renderItemC = ({ item, index }) => {
-    return (
-      <>
-        <ItemCatagories
+        <ItemTopSpots
           item={item}
           index={index}
           onPress={() => { }} />
@@ -64,41 +63,36 @@ const Dashboard = props => {
       showsVerticalScrollIndicator={false}>
       <CustomStatusBar />
 
-      <SliderBox
-        images={[require('../../Assets/Images/dash_Img.png')]}
-        ImageComponentStyle={styles.homepageImage}
-        sliderBoxHeight={180}
-        autoplay={false} />
-
-      <View style={styles.highlightBackground}>
+      <ImageBackground
+        source={screenData?.image}
+        resizeMode='cover'
+        style={styles.homepageImage}>
         <CustomTextView
-          textStyle={styles.menuTitle}
-          text={StringsOfLang.DASHBOARD.HIGHLIGHTS}
+          textStyle={styles.titleText}
+          text={screenData?.title}
         />
+      </ImageBackground>
 
-        <View style={styles.listView}>
-          <FlatList
-            data={highLights}
-            extraData={highLights}
-            horizontal={true}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={renderItem}
-          />
-        </View>
+      <View style={styles.introBackground}>
+        <CustomTextView
+          textStyle={styles.introText}
+          text={screenData?.intro}
+        />
       </View>
 
-      <View style={styles.catagoriesBackground}>
+
+      <View style={styles.topSpotsBackground}>
         <CustomTextView
           textStyle={styles.menuTitle}
-          text={StringsOfLang.DASHBOARD.CATAGORIES}
+          text={screenData?.topSpots?.title}
         />
 
         <View style={styles.listView}>
           <FlatList
-            data={catagories}
-            extraData={catagories}
+            data={screenData?.topSpots?.items}
+            extraData={screenData?.topSpots?.items}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={renderItemC}
+            renderItem={renderItem}
           />
         </View>
       </View>
@@ -114,12 +108,12 @@ const Dashboard = props => {
           <View style={styles.titleView}>
             <CustomTextView
               textStyle={styles.guideName}
-              text={guide?.name}
+              text={screenData?.guide?.name}
             />
 
             <CustomTextView
               textStyle={styles.guidePeriod}
-              text={guide?.period}
+              text={screenData?.guide?.period}
             />
 
             <TouchableOpacity style={styles.contactButton}>
@@ -133,7 +127,7 @@ const Dashboard = props => {
           <View style={styles.guideProfileView}>
             <Image
               style={styles.guideProfile}
-              source={guide.image}
+              source={screenData?.guide?.image}
             />
           </View>
 
@@ -149,7 +143,7 @@ const Dashboard = props => {
   );
 };
 
-export default Dashboard;
+export default Surfing;
 
 const styles = StyleSheet.create({
   container: {
@@ -180,7 +174,8 @@ const styles = StyleSheet.create({
   },
   homepageImage: {
     width: '100%',
-    height: RFValue(480),
+    height: RFValue(260),
+    justifyContent: 'center',
   },
   highlightBackground: {
     backgroundColor: Colors.colorWhite
@@ -188,8 +183,12 @@ const styles = StyleSheet.create({
   listView: {
     margin: RFValue(8)
   },
-  catagoriesBackground: {
-    backgroundColor: Colors.colorBackground
+  introBackground: {
+    backgroundColor: Colors.colorWhite
+  },
+  topSpotsBackground: {
+    backgroundColor: Colors.colorWhite,
+    paddingBottom: RFValue(50)
   },
   guidBackground: {
     backgroundColor: Colors.colorBackground
@@ -272,4 +271,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: getFontFamily("bold")
   },
+  introText: {
+    fontSize: RFValue(14),
+    color: Colors.colorBlack,
+    margin: RFValue(16),
+    marginTop: RFValue(24),
+    fontFamily: getFontFamily("regular")
+  },
+  titleText: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    verticalAlign: 'center',
+    fontSize: RFValue(40),
+    color: Colors.colorWhite,
+    fontFamily: getFontFamily("bold")
+  }
 });
