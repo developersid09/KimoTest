@@ -26,6 +26,8 @@ import { SliderBox } from "react-native-image-slider-box";
 import CustomTextView from '../../Components/CustomTextView';
 import ItemHighlight from './component/ItemHighlight';
 import ItemCatagories from './component/ItemCatagories';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateFirstName } from '../../../redux/reducers/User';
 
 const Dashboard = props => {
   const navigation = useNavigation();
@@ -35,13 +37,18 @@ const Dashboard = props => {
   const [catagories, setCatagories] = useState(session.catagories);
   const [guide, setGuide] = useState(session.guide);
 
+  const user = useSelector(state=> state.user);//get Data
+  const dispatch = useDispatch();//update data
+
+  console.log("user from redux ", user);
+
   const renderItem = ({ item, index }) => {
     return (
       <>
         <ItemHighlight
           item={item}
           index={index}
-          onPress={() => { }} />
+          onPress={() => {dispatch(updateFirstName({firstName: "Sidhesh"})) }} />
       </>
     )
   }
@@ -68,7 +75,8 @@ const Dashboard = props => {
         images={[require('../../Assets/Images/dash_Img.png')]}
         ImageComponentStyle={styles.homepageImage}
         sliderBoxHeight={180}
-        autoplay={false} />
+        autoplay={false}
+         />
 
       <View style={styles.highlightBackground}>
         <CustomTextView
