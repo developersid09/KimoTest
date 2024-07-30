@@ -15,6 +15,9 @@ import SplashScreen from 'react-native-splash-screen'
 import usePushNotification from './src/Hooks/PushNotification';
 import messaging from '@react-native-firebase/messaging';
 import PushNotification from 'react-native-push-notification';
+import {Provider} from 'react-redux';
+import store, {persistor} from './redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const App = () => {
   console.disableYellowBox = true;
@@ -87,11 +90,15 @@ const App = () => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
-      <AppProvider>
-        <AppContainer userIdFunc={userId} />
-      </AppProvider>
-    </View>
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}>
+      <View style={{ flex: 1 }}>
+        <AppProvider>
+          <AppContainer userIdFunc={userId} />
+        </AppProvider>
+      </View>
+      </PersistGate>
+    </Provider>
   );
 };
 
