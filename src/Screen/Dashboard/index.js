@@ -48,7 +48,7 @@ const Dashboard = props => {
         <ItemHighlight
           item={item}
           index={index}
-          onPress={() => {dispatch(updateFirstName({firstName: "Sidhesh"})) }} />
+          onPress={() => {dispatch(updateFirstName({firstName: "Shubham"})) }} />
       </>
     )
   }
@@ -81,7 +81,8 @@ const Dashboard = props => {
       <View style={styles.highlightBackground}>
         <CustomTextView
           textStyle={styles.menuTitle}
-          text={StringsOfLang.DASHBOARD.HIGHLIGHTS}
+          // text={StringsOfLang.DASHBOARD.HIGHLIGHTS}
+          text={user.firstName}
         />
 
         <View style={styles.listView}>
